@@ -1,6 +1,6 @@
 name: PlayerData
 version: ${project.version}
-main: mk.plugin.playerdata.main.playerdata.PlayerData
+main: mk.plugin.playerdata.main.MainPlayerData
 authors: [ Manaki ]
 commands:
   playerdata:
