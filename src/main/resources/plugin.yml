@@ -2,3 +2,7 @@ name: PlayerData
 version: ${project.version}
 main: mk.plugin.playerdata.main.playerdata.PlayerData
 authors: [ Manaki ]
+commands:
+  playerdata:
+    description: Commands
+    aliases: [pd]
