@@ -128,6 +128,9 @@ public class DataFileUtils {
 	}
 	
 	public static PlayerData load(Plugin plugin, String name, String hook) {
+		// If hook null
+		if (hook == null) return load(plugin, name);
+
 		File file = checkFile(plugin, name, hook);
 		return load(name, file, hook);
 	}
