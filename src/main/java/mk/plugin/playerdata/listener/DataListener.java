@@ -1,5 +1,6 @@
 package mk.plugin.playerdata.listener;
 
+import mk.plugin.playerdata.storage.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,10 @@ public class DataListener implements Listener {
 	public void onQuit(PlayerQuitEvent e) {
 		Player player = e.getPlayer();
 		Bukkit.getScheduler().runTaskLaterAsynchronously(MainPlayerData.plugin, () -> {
+			PlayerData data = PlayerDataAPI.get(player);
+			if (!data.hasData("uuid")) {
+				data.set("uuid", player.getUniqueId().toString());
+			}
 			PlayerDataAPI.saveAndClearCache(player.getName());
 			MainPlayerData.plugin.getLogger().info("§6Saved data " + player.getName());
 		}, 5);
