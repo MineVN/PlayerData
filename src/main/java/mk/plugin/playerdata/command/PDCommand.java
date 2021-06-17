@@ -18,8 +18,15 @@ public class PDCommand implements CommandExecutor {
 			sendTut(sender);
 			return false;
 		}
-		
-		if (args[0].equalsIgnoreCase("set")) {
+
+		if (args[0].equalsIgnoreCase("setglobal")) {
+			var gdt = PlayerDataAPI.getGlobalData();
+			gdt.set(args[1], args[2]);
+			PlayerDataAPI.saveGlobalData();
+			sender.sendMessage("Done! Set global data " + args[1] + " = " + args[2]);
+		}
+
+		else if (args[0].equalsIgnoreCase("set")) {
 			String player = args[1];
 			PlayerData pd = PlayerDataAPI.getPlayerData(player);
 			pd.set(args[2], args[3]);
@@ -51,6 +58,7 @@ public class PDCommand implements CommandExecutor {
 	public void sendTut(CommandSender sender) {
 		sender.sendMessage("");
 		sender.sendMessage("§c§lPlayerData by MankaiStep");
+		sender.sendMessage("§6/pd setglobal <key> <value>: §eSet value of player");
 		sender.sendMessage("§6/pd set <player> <key> <value>: §eSet value of player");
 		sender.sendMessage("§6/pd remove <player> <key>: §eRemove data of player");
 		sender.sendMessage("§6/pd get <player> <key>: §eShow data of player");
