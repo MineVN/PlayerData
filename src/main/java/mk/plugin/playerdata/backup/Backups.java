@@ -30,6 +30,8 @@ public class Backups {
     }
 
     public static boolean needBackup() {
+        int day = LocalDate.now().getDayOfMonth();
+        if (day % 5 != 0) return false;
         var key = getNowKey();
         var folder2 = new File(MainPlayerData.plugin.getDataFolder() + "//backup//" + key);
         return !folder2.exists();
