@@ -18,7 +18,7 @@ public class DataListener implements Listener {
 		Player player = e.getPlayer();
 		Bukkit.getScheduler().runTaskLaterAsynchronously(MainPlayerData.plugin, () -> {
 			PlayerData data = PlayerDataAPI.get(player);
-			if (!data.hasData("uuid")) {
+			if (data != null && !data.hasData("uuid")) {
 				data.set("uuid", player.getUniqueId().toString());
 			}
 			PlayerDataAPI.saveAndClearCache(player.getName());
